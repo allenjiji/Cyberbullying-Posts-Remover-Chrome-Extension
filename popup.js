@@ -1,10 +1,10 @@
-let changeColor = document.getElementById("changeColor");
+let changeColorButton = document.getElementById("changeColorButton");
 
 chrome.storage.sync.get("color", ({ color }) => {
-  changeColor.style.backgroundColor = color;
+  changeColorButton.style.backgroundColor = color;
 });
 
-changeColor.addEventListener("click", async () => {
+changeColorButton.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({
     active: true,
     currentWindow: true,
@@ -19,7 +19,30 @@ changeColor.addEventListener("click", async () => {
 });
 
 function setPageBackgroundColor() {
-  chrome.storage.sync.get("color", ({ color }) => {
-    document.body.style.backgroundColor = color;
+  chrome.storage.sync.get(["color", "switchStatus"], (result) => {
+    if (result.switchStatus === false) {
+      document.body.style.backgroundColor = result.color;
+      switchStatus = true
+      chrome.storage.sync.set({ switchStatus })
+    }
+    else {
+      document.body.style.backgroundColor = '#000000';
+      switchStatus = false
+      chrome.storage.sync.set({ switchStatus })
+    }
   });
 }
+
+
+setInitialSwitchState = () => {
+  chrome.storage.sync.get("switchStatus", ({ switchStatus }) => {
+    if (switchStatus === true) {
+      changeColorButton.checked = true;
+    }
+    else {
+      changeColorButton.checked = false;
+    }
+  })
+
+}
+setInitialSwitchState();

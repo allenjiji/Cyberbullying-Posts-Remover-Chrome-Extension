@@ -3,5 +3,5 @@ let switchStatus = false
 
 chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.sync.set({ color });
-    console.log(`Color is %cgreen`, `color: ${color}`);
+    chrome.storage.sync.set({ switchStatus })
 });
