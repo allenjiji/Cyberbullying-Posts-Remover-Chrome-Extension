@@ -1,0 +1,21 @@
+{
+    "name": "ChangeContent",
+    "description": "Its just an extension",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_icon": "logo.png",
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "128": "logo.png"
+    },
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting"
+    ]
+}
