@@ -1,17 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BullCy</title>
+  <link href="https://fonts.googleapis.com/css?family=Lobster:400|Raleway:300,400,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="button/button.css">
+
 
 </head>
 
 <body>
-  <label class="switch">
-    <input type="checkbox" id="changeColorButton">
-    <span class="slider round"></span>
-  </label>
-  <script src="popup.js"></script>
+  <div class="popup">
+    <h1> <span class="yellow">Bull</span><span class="blue">CY</span></h1>
+    <p>
+    </p>
+    <div class="container">
+      <div class="off">Off</div>
+      <label class="switch">
+        <input id="check" type="checkbox">
+        <span class="toggle"></span>
+      </label>
+      <div class="on">On</div>
+    </div>
+  </div>
+  <script src="./popup.js"></script>
+  <script src="button/button.js"></script>
+
 </body>
 
 </html>
