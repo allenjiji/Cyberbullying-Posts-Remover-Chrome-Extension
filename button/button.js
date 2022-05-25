@@ -3,6 +3,11 @@ var checkInput = document.getElementById('check');
 var on = document.getElementsByClassName('on');
 var off = document.getElementsByClassName('off');
 
+
+refreshTabs = () => {
+  chrome.tabs.reload();
+}
+
 checkInput.addEventListener('click', () => {
 
   chrome.storage.sync.get("switchStatus", ({ switchStatus }) => {
@@ -16,6 +21,7 @@ checkInput.addEventListener('click', () => {
     }
     switchStatus = !switchStatus
     chrome.storage.sync.set({ switchStatus })
+    refreshTabs()
 
   })
 })
