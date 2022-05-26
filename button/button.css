@@ -1,0 +1,93 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 21px;
+  }
+  
+  
+  
+  h2 {
+    color: #253b52;
+    margin-bottom: 30px;
+    font-weight: 400;
+    font-size: 30px;
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 3.4em;
+  }
+  
+  .container div {
+    margin: 20px;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    overflow: hidden;
+    background: #253b52;
+    border-radius: 5px;
+  }
+  
+  .switch input {
+    display: none;
+  }
+  
+  .toggle {
+    position: absolute;
+    background: #fff5f;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .toggle:after {
+    border: solid 8px #253b52;
+    content: " ";
+    z-index: 99;
+    width: 84px;
+    height: 34px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .toggle:before {
+    position: absolute;
+    content: " ";
+    height: 40px;
+    width: 100px;
+    background: #fff;
+    top: 5px;
+    left: -52px;
+    transition: left .4s ease-in-out, background .4s ease;
+  }
+  
+  .switch:hover .toggle:before {
+    
+    cursor: pointer;
+  }
+  
+  .off {
+    color: red;
+    transition: all .5s ease;
+  }
+  
+  .on {
+    color: #253b52;
+    transition: all .5s ease;
+  }
+  
+  input:checked + .toggle:before {
+    left: 52px;
+  }
+  
+  
