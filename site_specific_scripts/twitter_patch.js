@@ -5,6 +5,13 @@ XMLHttpRequest.prototype.open = function () {
         console.log(url);
         this.addEventListener('readystatechange', function (event) {
             var tmp_tweets = JSON.parse(this.responseText);
+            // REQUEST SENDING 
+            fetch('https://fakestoreapi.com/products')
+                .then(res => res.json())
+                .then(json => {
+                    alert(json)
+                    // json.forEach((key) => tmp_tweets.globalObjects.tweets[key]["full_text"] = "Altered Text")
+                })
             Object.keys(tmp_tweets.globalObjects.tweets).forEach((key) => tmp_tweets.globalObjects.tweets[key]["full_text"] = "Altered Text");
             // var keys=Object.keys(tmp_tweets.globalObjects.tweets);
             // tmp_tweets.globalObjects.tweets[keys[0]]="Shit has wreaked Havoc";

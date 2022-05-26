@@ -18,22 +18,22 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
                 ];
 
                 for (var site of sites) {
-                    console.log(site.pattern);
+                    // console.log(site.pattern);
                     if (site.pattern.test(current_tab_info.url)) {
-                        console.log("Inside if statement");
+                        // console.log("Inside if statement");
                         var resourceUrl = chrome.runtime.getURL(site.file);
-                        console.log(resourceUrl);
+                        // console.log(resourceUrl);
                         var actualCode = (rUrl) => {
                             if (document.getElementById("injected_Script") == null) {
-                                console.log('Script Injected');
+                                // console.log('Script Injected');
                                 var s = document.createElement('script');
                                 s.src = rUrl;
                                 s.id = "injected_Script"
-                                console.log(document.head);
+                                // console.log(document.head);
                                 document.head.appendChild(s);
                             }
                             else {
-                                console.log("Not Injected");
+                                // console.log("Not Injected");
                             }
                         };
 
@@ -44,7 +44,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
                                 args: [resourceUrl],
                             });
 
-                        console.log(current_tab_info.url);
+                        // console.log(current_tab_info.url);
                         break;
                     }
                 }

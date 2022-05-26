@@ -1,10 +1,16 @@
-
 var checkInput = document.getElementById('check');
 var on = document.getElementsByClassName('on');
 var off = document.getElementsByClassName('off');
 
 
-refreshTabs = () => {
+refreshTabs = async () => {
+  var patterns = [
+    /^https:\/\/twitter/, /^https:\/\/www\.facebook/, /^https:\/\/www\.youtube/, /^https:\/\/www\.instagram/
+  ]
+  // let [tab] = await chrome.tabs.query({ currentWindow: true })
+  // for (var pattern in patterns) {
+  //   if (pattern.test())
+  // }
   chrome.tabs.reload();
 }
 
