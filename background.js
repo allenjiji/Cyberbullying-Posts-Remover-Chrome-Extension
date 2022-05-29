@@ -20,11 +20,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
                 for (var site of sites) {
                     if (site.pattern.test(current_tab_info.url)) {
                         var resourceUrl = chrome.runtime.getURL(site.file);
+                        console.log(chrome.runtime.id);
                         var actualCode = (rUrl) => {
-                            // var meta = document.createElement('meta');
-                            // meta.httpEquiv = "Content-Security-Policy";
-                            // meta.content = "connect-src 'self' https://mocki.io";
-                            // document.head.appendChild(meta);
                             if (document.getElementById("injected_Script") == null) {
                                 console.log('Script Injected');
                                 var s = document.createElement('script');
@@ -52,27 +49,13 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
             });
         }
     });
-
+    // chrome.browsingData.remove({}, { serviceWorkers: true }, function () {});
 });
 
-// chrome.webRequest.onHeadersReceived.addListener(
-//     editCSPHeader,
-//     {
-//         urls: [ "<all_urls>" ],
-//         types: [ "sub_frame","main_frame" ]
-//     },
-//     ["blocking", "responseHeaders"]
-//   );
-
-// function editCSPHeader(r) {
-//     console.log('maati');
-//     const headers = r.responseHeaders; // original headers
-//     for (let i=headers.length-1; i>=0; --i) {
-//         let header = headers[i].name.toLowerCase();
-//         if (header === "content-security-policy") { 
-//             headers[i].value = headers[i].value.replace("connect-src", "connect-src https://mocki.io");
-//         }
-//     }
-//     return {responseHeaders: headers};
-// }
-
+chrome.runtime.onMessageExternal.addListener(
+    function(request, sender, sendResponse) {
+      console.log(request.list_data)
+      const prediction_url="https://mocki.io/v1/54aac1dd-e447-4543-95b5-2c7098a09e12";
+      fetch(prediction_url).then(data=>data.json()).then(res=>console.log(res));
+      sendResponse({list_data:[0,1,1,1]});
+    });
