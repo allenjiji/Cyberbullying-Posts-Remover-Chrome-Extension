@@ -20,30 +20,20 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
                 for (var site of sites) {
                     if (site.pattern.test(current_tab_info.url)) {
                         var resourceUrl = chrome.runtime.getURL(site.file);
-                        var actualCode = (rUrl) => {
-                            // var meta = document.createElement('meta');
-                            // meta.httpEquiv = "Content-Security-Policy";
-                            // meta.content = "connect-src 'self' https://mocki.io";
-                            // document.head.appendChild(meta);
-                            if (document.getElementById("injected_Script") == null) {
+                        var actualCode =`
+                            if (document.getElementById('injected_Script') == null) {
                                 console.log('Script Injected');
                                 var s = document.createElement('script');
-                                s.src = rUrl;
-                                s.id = "injected_Script";
+                                s.src = "${resourceUrl}";
+                                s.id = 'injected_Script';
                                 // console.log(document.head);
                                 document.head.appendChild(s);
                             }
                             else {
                                 console.log("Not Injected");
-                            }
-                        };
+                            }`
 
-                        chrome.scripting.executeScript(
-                            {
-                                target: { tabId: tabId },
-                                func: actualCode,
-                                args: [resourceUrl],
-                            });
+                        chrome.tabs.executeScript(tabId,{code:actualCode},);
 
                         // console.log(current_tab_info.url);
                         break;
@@ -55,24 +45,26 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
 
 });
 
-// chrome.webRequest.onHeadersReceived.addListener(
-//     editCSPHeader,
-//     {
-//         urls: [ "<all_urls>" ],
-//         types: [ "sub_frame","main_frame" ]
-//     },
-//     ["blocking", "responseHeaders"]
-//   );
+function editCSPHeader(r) {
+    console.log('maati');
+    const headers = r.responseHeaders; // original headers
+    for (let i=headers.length-1; i>=0; --i) {
+        let header = headers[i].name.toLowerCase();
+        if (header === "content-security-policy") { 
+            headers[i].value = headers[i].value.replace("connect-src", "connect-src https://mocki.io");
+        }
+    }
+    return {responseHeaders: headers};
+}
 
-// function editCSPHeader(r) {
-//     console.log('maati');
-//     const headers = r.responseHeaders; // original headers
-//     for (let i=headers.length-1; i>=0; --i) {
-//         let header = headers[i].name.toLowerCase();
-//         if (header === "content-security-policy") { 
-//             headers[i].value = headers[i].value.replace("connect-src", "connect-src https://mocki.io");
-//         }
-//     }
-//     return {responseHeaders: headers};
-// }
+chrome.webRequest.onHeadersReceived.addListener(
+    editCSPHeader,
+    {
+        urls: [ "<all_urls>" ],
+        types: [ "sub_frame","main_frame" ]
+    },
+    ["blocking", "responseHeaders","extraHeaders"]
+  );
+
+
 
