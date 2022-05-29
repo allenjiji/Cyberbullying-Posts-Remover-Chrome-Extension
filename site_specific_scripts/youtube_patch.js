@@ -1,5 +1,6 @@
 const { fetch: originalFetch } = window;
 
+
 window.fetch = async (...args) => {
     let [resource, config ] = args;
 
@@ -18,7 +19,7 @@ window.fetch = async (...args) => {
                 cmnt=cmntObj.commentThreadRenderer.comment.commentRenderer.contentText.runs;
                 // cmnt_text="";
                 // cmnt.forEach((c)=>cmnt_text+=(c.text+" "));
-                tmp_cmnts.onResponseReceivedEndpoints[1].reloadContinuationItemsCommand.continuationItems[i].commentThreadRenderer.comment.commentRenderer.contentText.runs=[{text:"Altered Text"}];
+                tmp_cmnts.onResponseReceivedEndpoints[1].reloadContinuationItemsCommand.continuationItems[i].commentThreadRenderer.comment.commentRenderer.contentText.runs=[{text:"Myre Moonji"}];
               });
             }
             return JSON.stringify(tmp_cmnts);

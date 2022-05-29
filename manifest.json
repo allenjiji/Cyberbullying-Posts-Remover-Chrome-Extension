@@ -1,11 +1,15 @@
 {
-    "name": "ChangeContent",
+    "name": "BullCy",
     "description": "Its just an extension",
     "version": "1.0",
     "manifest_version": 3,
     "background": {
         "service_worker": "background.js"
     },
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self';connect-src 'self' https://mocki.io",
+        "sandbox": "sandbox allow-scripts; script-src 'self'; object-src 'self';connect-src 'self' https://mocki.io"
+      },
     "action": {
         "default_icon": "logo.png",
         "default_popup": "popup.html"
@@ -17,6 +21,7 @@
         "storage",
         "activeTab",
         "scripting",
+        "webRequestBlocking",
         "tabs","webRequest"
     ],
     "host_permissions": [

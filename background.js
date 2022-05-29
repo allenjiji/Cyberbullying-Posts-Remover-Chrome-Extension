@@ -18,22 +18,23 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
                 ];
 
                 for (var site of sites) {
-                    // console.log(site.pattern);
                     if (site.pattern.test(current_tab_info.url)) {
-                        // console.log("Inside if statement");
                         var resourceUrl = chrome.runtime.getURL(site.file);
-                        // console.log(resourceUrl);
                         var actualCode = (rUrl) => {
+                            // var meta = document.createElement('meta');
+                            // meta.httpEquiv = "Content-Security-Policy";
+                            // meta.content = "connect-src 'self' https://mocki.io";
+                            // document.head.appendChild(meta);
                             if (document.getElementById("injected_Script") == null) {
-                                // console.log('Script Injected');
+                                console.log('Script Injected');
                                 var s = document.createElement('script');
                                 s.src = rUrl;
-                                s.id = "injected_Script"
+                                s.id = "injected_Script";
                                 // console.log(document.head);
                                 document.head.appendChild(s);
                             }
                             else {
-                                // console.log("Not Injected");
+                                console.log("Not Injected");
                             }
                         };
 
@@ -50,7 +51,28 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
                 }
             });
         }
-    })
+    });
 
 });
+
+// chrome.webRequest.onHeadersReceived.addListener(
+//     editCSPHeader,
+//     {
+//         urls: [ "<all_urls>" ],
+//         types: [ "sub_frame","main_frame" ]
+//     },
+//     ["blocking", "responseHeaders"]
+//   );
+
+// function editCSPHeader(r) {
+//     console.log('maati');
+//     const headers = r.responseHeaders; // original headers
+//     for (let i=headers.length-1; i>=0; --i) {
+//         let header = headers[i].name.toLowerCase();
+//         if (header === "content-security-policy") { 
+//             headers[i].value = headers[i].value.replace("connect-src", "connect-src https://mocki.io");
+//         }
+//     }
+//     return {responseHeaders: headers};
+// }
 
