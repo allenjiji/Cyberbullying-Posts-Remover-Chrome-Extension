@@ -1,12 +1,13 @@
 {
-    "name": "ChangeContent",
+    "name": "BullCy",
     "description": "Its just an extension",
     "version": "1.0",
-    "manifest_version": 3,
+    "manifest_version": 2,
     "background": {
-        "service_worker": "background.js"
+        "scripts": ["background.js"],
+        "persistent": true
     },
-    "action": {
+    "browser_action": {
         "default_icon": "logo.png",
         "default_popup": "popup.html"
     },
@@ -16,21 +17,11 @@
     "permissions": [
         "storage",
         "activeTab",
-        "scripting",
-        "tabs","webRequest"
-    ],
-    "host_permissions": [
+        "webRequestBlocking",
+        "tabs","webRequest",
         "https://*/*",
-        "http://*/*"
+        "http://*/*",
+        "<all_urls>"
     ],
-    "web_accessible_resources": [
-        {
-            "resources": [
-                "site_specific_scripts/*"
-            ],
-            "matches": [
-                "<all_urls>"
-            ]
-        }
-    ]
+    "web_accessible_resources": ["site_specific_scripts/*"]
 }
