@@ -1,8 +1,26 @@
 {
-    "name": "ChangeContent",
+    "name": "BullCy",
     "description": "Its just an extension",
     "version": "1.0",
     "manifest_version": 3,
+    "content_scripts": [
+        {
+          "run_at" : "document_start",
+          "js": ["before.js"],
+          "matches": [
+            "https://*/*",
+            "http://*/*"
+          ]
+        },
+        {
+          "run_at" : "document_idle",
+          "js": ["after.js"],
+          "matches": [
+            "https://*/*",
+            "http://*/*"
+          ]
+        }
+      ],
     "background": {
         "service_worker": "background.js"
     },
@@ -17,7 +35,7 @@
         "storage",
         "activeTab",
         "scripting",
-        "tabs","webRequest"
+        "tabs","webRequest","browsingData"
     ],
     "host_permissions": [
         "https://*/*",
@@ -32,5 +50,8 @@
                 "<all_urls>"
             ]
         }
-    ]
+    ],
+    "externally_connectable":{
+      "matches": ["https://twitter.com/*","https://www.youtube.com/*","https://www.instagram.com/*"]
+    }
 }
