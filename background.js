@@ -60,7 +60,7 @@ chrome.runtime.onMessageExternal.addListener(
           else tmp_res.push(true);
       });
 
-      const prediction_url="http://04b8-35-230-2-203.ngrok.io/predict/";
+      const prediction_url="http://59e2-34-147-10-51.ngrok.io/predict/";
       fetch(prediction_url,{
         method: 'POST',
         headers: {

@@ -22,7 +22,7 @@ checkInput.addEventListener('click', () => {
       off[0].style.color = "red";
     }
     else {
-      on[0].style.color = "green";
+      on[0].style.color = "#03fe39";
       off[0].style.color = "#253b52";
     }
     switchStatus = !switchStatus

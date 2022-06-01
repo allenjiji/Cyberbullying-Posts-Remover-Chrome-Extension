@@ -32,8 +32,9 @@
     width: 100px;
     height: 50px;
     overflow: hidden;
-    background: #253b52;
     border-radius: 5px;
+    background: #00008B;
+    border: #0808ba91;
   }
   
   .switch input {
@@ -42,7 +43,7 @@
   
   .toggle {
     position: absolute;
-    background: #fff5f;
+    /* background: #ffff5f; */
     top: 0;
     left: 0;
     right: 0;
@@ -50,7 +51,7 @@
   }
   
   .toggle:after {
-    border: solid 8px #253b52;
+    border: solid 8px #00008B;
     content: " ";
     z-index: 99;
     width: 84px;

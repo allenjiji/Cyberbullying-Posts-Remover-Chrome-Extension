@@ -31,7 +31,7 @@ XMLHttpRequest.prototype.open = function() {
               console.log(response);
 
               tmp_tweets.data.home.home_timeline_urt.instructions[0].entries.forEach((element,i)=>{
-                if (response.list_data[i])  element.content.itemContent.tweet_results.result.legacy.full_text="";
+                if (response.list_data[i])  element.content.itemContent.tweet_results.result.legacy.full_text="🔴🔴🔴 "+element.content.itemContent.tweet_results.result.legacy.full_text;
               });
               
               thisbro.responseText = thisbro.response= JSON.stringify(tmp_tweets);
@@ -76,7 +76,7 @@ XMLHttpRequest.prototype.open = function() {
               console.log(response);
 
               tmp_tweets.data.user.result.timeline_v2.timeline.instructions[1].entries.forEach((element,i)=>{
-                if (response.list_data[i])  element.content.itemContent.tweet_results.result.legacy.full_text="";
+                if (response.list_data[i])  element.content.itemContent.tweet_results.result.legacy.full_text="🔴🔴🔴 "+element.content.itemContent.tweet_results.result.legacy.full_text;
               });
 
               thisbro.responseText = thisbro.response= JSON.stringify(tmp_tweets);
@@ -125,12 +125,12 @@ XMLHttpRequest.prototype.open = function() {
               var gc=0;
               tmp_tweets.data.threaded_conversation_with_injections_v2.instructions[0].entries.forEach((element)=>{
                 if (element.entryId.indexOf('tweet')!==-1){
-                  if(response.list_data[gc]) element.content.itemContent.tweet_results.result.legacy.full_text="";
+                  if(response.list_data[gc]) element.content.itemContent.tweet_results.result.legacy.full_text="🔴🔴🔴 "+element.content.itemContent.tweet_results.result.legacy.full_text;
                   gc++;
                 }
                 else if(element.entryId.indexOf('conversationthread')!==-1){
                   element.content.items.forEach((e)=>{
-                    if(response.list_data[gc]) e.item.itemContent.tweet_results.result.legacy.full_text="";
+                    if(response.list_data[gc]) e.item.itemContent.tweet_results.result.legacy.full_text="🔴🔴🔴 "+e.item.itemContent.tweet_results.result.legacy.full_text;
                     gc++;
                   });
                 } 
