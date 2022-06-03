@@ -3,6 +3,7 @@
 var openw = XMLHttpRequest.prototype.open;
 XMLHttpRequest.prototype.open = function() {
     var url=arguments[1];
+    var editorExtensionId = document.getElementById("injected_Script").className;
     if(url.indexOf('HomeTimeline') !== -1){
         console.log(url);
         this.addEventListener('readystatechange', function(eve) {
@@ -19,8 +20,6 @@ XMLHttpRequest.prototype.open = function() {
             else tweets.push("");
           });
           
-          var editorExtensionId = "lfkbjcdkifaejoahhflfnojimgbplkgf";
-
           Object.defineProperty(this, 'responseText', {writable: true});
           Object.defineProperty(this, 'response', { writable: true });
           thisbro = this
@@ -64,8 +63,6 @@ XMLHttpRequest.prototype.open = function() {
               tweets.push("");}
           });
           
-          var editorExtensionId = "lfkbjcdkifaejoahhflfnojimgbplkgf";
-
           Object.defineProperty(this, 'responseText', {writable: true});
           Object.defineProperty(this, 'response', { writable: true });
           thisbro = this
@@ -110,8 +107,6 @@ XMLHttpRequest.prototype.open = function() {
             else tweets.push("");
           });
           
-          var editorExtensionId = "lfkbjcdkifaejoahhflfnojimgbplkgf";
-
           Object.defineProperty(this, 'responseText', {writable: true});
           Object.defineProperty(this, 'response', { writable: true });
           thisbro = this
@@ -167,8 +162,6 @@ XMLHttpRequest.prototype.open = function() {
         tweets.push(tmp_tweets.globalObjects.tweets[key].full_text);
       });
       
-      var editorExtensionId = "lfkbjcdkifaejoahhflfnojimgbplkgf";
-
       Object.defineProperty(this, 'responseText', {writable: true});
       Object.defineProperty(this, 'response', { writable: true });
       thisbro = this

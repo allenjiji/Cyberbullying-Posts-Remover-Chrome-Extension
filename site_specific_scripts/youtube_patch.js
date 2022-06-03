@@ -10,6 +10,7 @@ window.fetch = async (...args) => {
 
     if(url.indexOf('next?key') !== -1){
         console.log(url);
+        var editorExtensionId = document.getElementById("injected_Script").className;
 
         const text_dup =async () =>{
             console.log("I reached Json");
@@ -25,8 +26,6 @@ window.fetch = async (...args) => {
                 // console.log(cmnt_text);
                 // iter.continuationItems[i].commentThreadRenderer.comment.commentRenderer.contentText.runs=[{text:"Alter "}];
               });
-
-              var editorExtensionId = "lfkbjcdkifaejoahhflfnojimgbplkgf";
 
               var prom= new Promise((resolve,reject)=>{
                 chrome.runtime.sendMessage(editorExtensionId, {list_data: cmnt_list},

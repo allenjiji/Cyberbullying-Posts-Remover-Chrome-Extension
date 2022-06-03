@@ -7,29 +7,35 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>BullCy</title>
   <link href="https://fonts.googleapis.com/css?family=Lobster:400|Raleway:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="popup.css">
   <link rel="stylesheet" href="button/button.css">
-
-
+  <script src="./bodymovin_light.min.js"></script>
+  <script src="./TweenMax.min.js"></script>
 </head>
 
 <body>
   <div class="popup">
-    <h1> <span class="yellow">Bull</span><span class="blue">CY</span></h1>
-    <p>
-    </p>
-    <div class="container">
-      <div class="off">Off</div>
-      <label class="switch">
-        <input id="check" type="checkbox">
-        <span class="toggle"></span>
-      </label>
-      <div class="on">On</div>
+    <div class="oline">
+      <img src="../logo.png" class="logo_head">
+      <h1> <span class="black">Bull</span><span class="yellow">Cy</span></h1>
     </div>
+    <div class="blocked">
+      <h3>Blocked: 2</h3>
+      <h6>Total: 153</h6>
+    </div>
+    <div class="butt">
+      <input id="toggle" class="toggle" type="checkbox" role="switch" name="toggle" value="on">
+      <label for="toggle" class="slot">
+        <span class="slot__label">OFF</span>
+        <span class="slot__label">ON</span>
+      </label>
+    </div>
+
+    <div class="curtain"></div>
+    
   </div>
   <script src="./popup.js"></script>
-  <script src="button/button.js"></script>
-
 </body>
 
 </html>

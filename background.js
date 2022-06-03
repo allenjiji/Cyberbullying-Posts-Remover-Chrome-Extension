@@ -1,7 +1,9 @@
-let switchStatus = false
+let switchStatus = false;
+
+var blockedNow=0;
 
 chrome.runtime.onInstalled.addListener(() => {
-    chrome.storage.sync.set({ switchStatus })
+    chrome.storage.sync.set({ switchStatus });
 });
 
 
@@ -19,15 +21,17 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
                 for (var site of sites) {
                     if (site.pattern.test(current_tab_info.url)) {
                         var resourceUrl = chrome.runtime.getURL(site.file);
-                        console.log(chrome.runtime.id);
-                        var actualCode = (rUrl) => {
+                        var runtimeId=chrome.runtime.id;
+                        var actualCode = (rUrl,rId) => {
                             if (document.getElementById("injected_Script") == null) {
                                 console.log('Script Injected');
                                 var s = document.createElement('script');
                                 s.src = rUrl;
+                                s.className=rId;
                                 s.id = "injected_Script";
                                 // console.log(document.head);
                                 document.head.appendChild(s);
+                                console.log(s);
                             }
                             else {
                                 console.log("Not Injected");
@@ -38,10 +42,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
                             {
                                 target: { tabId: tabId },
                                 func: actualCode,
-                                args: [resourceUrl],
+                                args: [resourceUrl,runtimeId],
                             });
-
-                        // console.log(current_tab_info.url);
                         break;
                     }
                 }
@@ -60,7 +62,7 @@ chrome.runtime.onMessageExternal.addListener(
           else tmp_res.push(true);
       });
 
-      const prediction_url="http://59e2-34-147-10-51.ngrok.io/predict/";
+      const prediction_url="http://1478-35-201-170-89.ngrok.io/predict/";
       fetch(prediction_url,{
         method: 'POST',
         headers: {
@@ -70,6 +72,13 @@ chrome.runtime.onMessageExternal.addListener(
         body: JSON.stringify({data:request.list_data})
       }).then(data=>data.json()).then(res=>{
           console.log(res.data);
+        //   chrome.runtime.sendMessage({
+        //     msg: "update_blocked", 
+        //     data: {
+        //         subject: "Loading",
+        //         content: "Just completed!"
+        //     }
+        // });
           sendResponse({list_data:res.data});
         });
     // sendResponse({list_data:tmp_res});

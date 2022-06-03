@@ -1,33 +1,71 @@
-body{
-  background: #6b89eeb7;
-}
-
 .popup {
   min-width: 344px;
   min-height: 188px;
-  /* background: #FFFFFF; */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  padding: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   
 }
 
 h1 {
-  font-size: 1.5rem;
+  padding-top: 8px;
+  font-size: 0.5rem;
   font-family: "Lobster";
   text-align: center;
 
 }
 
 .yellow {
-  color: #FBE36D;
+  color: #e4c00f;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.blue {
-  color: #588BE4;
+.black {
+  color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
 }
 
-p {
+/* p {
   font-family: "Raleway", sans-serif;
   font-size: 0.75rem;
+} */
+
+.oline{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  /* align-items: center; */
 }
+
+.logo_head{
+  width: 50px;
+  height: 50px;
+}
+
+.butt{
+  padding-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* height: 3rem;
+  width: 3rem; */
+}
+
+.blocked{
+  padding-top: 13px;
+  font-family: 'Open Sans', sans-serif;
+}
+.blocked>h3{
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.blocked>h6{
+  text-align: center;
+  font-size: 0.4rem;
+  font-weight: 300;
+}
+
