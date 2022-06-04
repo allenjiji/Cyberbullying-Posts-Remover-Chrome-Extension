@@ -1,5 +1,8 @@
 let toggleButton = document.getElementById("toggle");
 
+var editorExtensionId = "lfkbjcdkifaejoahhflfnojimgbplkgf";
+
+
 refreshTabs = async () => {
   var patterns = [
     /^https:\/\/twitter/, /^https:\/\/www\.facebook/, /^https:\/\/www\.youtube/, /^https:\/\/www\.instagram/
@@ -31,4 +34,9 @@ toggleButton.addEventListener("change", function () {
     refreshTabs();
   });
 
+});
+
+chrome.runtime.sendMessage(editorExtensionId, { msg: "update_blocked" }, function (res) {
+  document.getElementById("blocked_cur").textContent = `Blocked: ${res.blocked}`;
+  document.getElementById("blocked_tot").textContent = `Total: ${res.total}`;
 });
